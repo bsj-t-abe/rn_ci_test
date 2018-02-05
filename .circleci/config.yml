@@ -15,19 +15,19 @@ jobs:
       - store_test_results:
           path: ~/project/junit.xml
 
-  android:
-    working_directory: ~/project/android
-    docker:
-      - image: circleci/android:api-27-node8-alpha
-    steps:
-      - checkout:
-          path: ~/project
-      - attach_workspace:
-          at: ~/project
-      - run: bundle install
-      - run: bundle exec fastlane test
-      - store_test_results:
-          path: ~/project/android/reports
+  # android:
+  #   working_directory: ~/project/android
+  #   docker:
+  #     - image: circleci/android:api-27-node8-alpha
+  #   steps:
+  #     - checkout:
+  #         path: ~/project
+  #     - attach_workspace:
+  #         at: ~/project
+  #     - run: bundle install
+  #     - run: bundle exec fastlane test
+  #     - store_test_results:
+  #         path: ~/project/android/reports
 
   ios:
     macos:
@@ -60,9 +60,9 @@ workflows:
   node-android-ios:
     jobs:
       - build
-      - android:
-          requires:
-            - build
+      # - android:
+      #     requires:
+      #       - build
       - ios:
           requires:
             - build
